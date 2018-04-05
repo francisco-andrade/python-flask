@@ -1,12 +1,12 @@
 pipeline {
-  agent any
-  stages {
-    stage('Initialize') {
-      steps {
-        echo 'Starting pipeline'
-        sh '''pwd
-echo $PATH'''
-      }
+    agent {
+        docker { image 'node:7-alpine' }
     }
-  }
-}
+    stages {
+        stage('Test') {
+            steps {
+                sh 'node --version'
+            }
+        }
+    }
+}}
