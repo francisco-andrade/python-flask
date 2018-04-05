@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'jazzdd/alpine-flask'
-    }
-    
-  }
+  agent any
   stages {
     stage('Initialize') {
       steps {
