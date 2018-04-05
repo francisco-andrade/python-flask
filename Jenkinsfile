@@ -2,6 +2,7 @@ pipeline {
   agent {
     docker {
       image 'jazzdd/alpine-flask'
+      args '--entrypoint /bin/bash'
     }
     
   }
