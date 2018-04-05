@@ -7,12 +7,14 @@ pipeline {
   }
   stages {
     stage('Initialize') {
+      agent {
+        docker {
+          image 'jazzdd/alpine-flask'
+        }
+        
+      }
       steps {
         echo 'Starting pipeline'
-      }
-    }
-    stage('Shellscript') {
-      steps {
         sh '''pwd
 echo $PATH'''
       }
