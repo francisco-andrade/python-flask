@@ -1,7 +1,8 @@
 pipeline {
   agent {
     docker {
-      image 'node:7-alpine'
+      image 'jazzdd/alpine-flask'
+      args '-p 80:80  -v /tmp:/app'
     }
     
   }
