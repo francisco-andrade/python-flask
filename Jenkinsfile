@@ -4,7 +4,7 @@ pipeline {
     agent {
         docker {
             image 'jazzdd/alpine-flask'
-            args '-v ${workspace}:/app'
+            args '-v $(pwd):/app'
         }
     }
     stages {
