@@ -2,12 +2,7 @@ pipeline {
     agent none
     stages {
         stage('Test') {
-            agent {
-                docker {
-                    image 'jazzdd/alpine-flask'
-                    args '-v $HOME/:/app'
-                }
-            }
+            agent { dockerfile true }
             steps {
                 sh 'pwd'
                 sh 'ls'
