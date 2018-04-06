@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        docker { 
-            image 'node:7-alpine'
-            args '-v ./:/app'
-            }
+        dockerfile true
     }
     stages {
         stage('Test') {
