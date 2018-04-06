@@ -1,16 +1,16 @@
 pipeline {
-  agent {
-    docker {
-      image 'jazzdd/alpine-flask'
-      args '--entrypoint /bin/bash'
+    agent {
+        docker { 
+            dockerfile true
+            args '-p 8081:8081'
+            }
     }
-    
-  }
-  stages {
-    stage('Test') {
-      steps {
-        sh 'node --version'
-      }
+    stages {
+        stage('Test') {
+            steps {
+                sh 'wget localhost:8081'
+                sh 'cat index.html'
+            }
+        }
     }
-  }
 }
