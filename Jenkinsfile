@@ -1,6 +1,4 @@
 pipeline {
-    def workspace = pwd()
-
     agent {
         docker {
             image 'jazzdd/alpine-flask'
