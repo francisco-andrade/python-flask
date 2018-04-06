@@ -1,13 +1,31 @@
-pipeline {
-    agent {
-        dockerfile true
-    }
-    stages {
-        stage('Test') {
-            steps {
-                sh 'wget localhost:8081'
-                sh 'cat index.html'
-            }
+node {
+        stage("Main build") {
+
+            checkout scm
+
+            docker.image('ruby:2.3.1').inside {
+
+              stage("Install Bundler") {
+                sh "gem install bundler --no-rdoc --no-ri"
+              }
+
+              stage("Use Bundler to install dependencies") {
+                sh "bundle install"
+              }
+
+              stage("Build package") {
+                sh "bundle exec rake build:deb"
+              }
+
+              stage("Archive package") {
+                archive (includes: 'pkg/*.deb')
+              }
+
+           }
+
         }
-    }
+
+        // Clean up workspace
+        step([$class: 'WsCleanup'])
+
 }
