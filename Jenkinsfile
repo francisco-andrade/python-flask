@@ -1,9 +1,6 @@
 pipeline {
     agent {
-        dockerfile {
-            filename 'Dockerfile'
-            additionalBuildArgs '-p 8081:8081'
-        }
+        dockerfile true
     }
     stages {
         stage('Test') {
