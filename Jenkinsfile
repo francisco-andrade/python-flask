@@ -24,7 +24,7 @@ pipeline {
           echo 'Launch container'
           env.DOCKER_CONTAINER_NAME = env.APP_NAME + env.BUILD_NUMBER
           sh """docker run -d -p 8888:8888 --name ${env.DOCKER_CONTAINER_NAME} --entrypoint python ${env.IMAGE_TAG} /usr/src/app/app.py"""
-          sh """docker run -ti ${env.IMAGE_TAG} curl localhost:8888"""
+          sh """docker exec -t ${env.DOCKER_CONTAINER_NAME} curl localhost:8888"""
           sh """docker rm -f ${env.DOCKER_CONTAINER_NAME} || true"""
         }
       }
