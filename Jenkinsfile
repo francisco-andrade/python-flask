@@ -6,6 +6,7 @@ pipeline {
         IMAGE_PATH = "./"
         IMAGE_TAG = "${APP_NAME}:${BRANCH_NAME}.${BUILD_NUMBER}"
         DOCKER_CONTAINER_NAME = "${APP_NAME}${BUILD_NUMBER}"
+        REMOVE_CONTAINER_AT_END = "false"
     }
 
     stages {
@@ -39,7 +40,8 @@ pipeline {
 
     post {
         always {
-            sh """docker rm -f ${env.DOCKER_CONTAINER_NAME} || true"""
+            echo 'Remove container'
+            sh """if ${env.REMOVE_CONTAINER_AT_END}; then docker rm -f ${env.DOCKER_CONTAINER_NAME} || true; fi"""
         }
     }
 }
