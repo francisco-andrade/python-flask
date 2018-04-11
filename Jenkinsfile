@@ -1,7 +1,9 @@
 pipeline {
-  agent {
-    dockerfile true
-  }
+    agent {
+        dockerfile {
+            filename 'Dockerfile'
+        }
+    }
 
     environment {
         APP_NAME = "flask"
