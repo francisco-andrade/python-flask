@@ -11,6 +11,15 @@ pipeline {
     }
 
     stages {
+        stage('Copy source code') {
+            steps {
+                echo 'Building Docker Image'
+                script {
+                    def newImage = docker.build(IMAGE_TAG, IMAGE_PATH)
+                }
+            }
+        }
+
         stage('Build Container Image') {
             steps {
                 echo 'Building Docker Image'
