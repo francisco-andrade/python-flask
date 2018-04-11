@@ -20,19 +20,21 @@ pipeline {
             }
         }
 
-        stage ('Container Tests') {
+        stage ('Container Tests')
+        {
             steps {
                 script {
                     echo 'Launch container'
                     sh """docker run -d -p ${env.SERVICE_PORT}:${env.SERVICE_PORT} --name ${env.DOCKER_CONTAINER_NAME} --entrypoint python ${env.IMAGE_TAG} /usr/src/app/app.py"""
                     env.CONTAINER_IP = sh (script: """docker inspect --format='{{ .NetworkSettings.IPAddress }}' ${env.DOCKER_CONTAINER_NAME}""", returnStdout: true).toString().trim()
                     sh """echo ${env.CONTAINER_IP}"""
-                    sh """if [[ $(curl -s ${env.CONTAINER_IP}:${env.SERVICE_PORT}) == *here* ]]; then true; else false; fi"""
+                    sh """curl -s ${env.CONTAINER_IP}:${env.SERVICE_PORT}"""
                 }
             }
         }
 
-        stage ('Unit Tests') {
+        stage ('Unit Tests')
+        {
             steps {
                 echo 'Run Unit Tests'
             }
