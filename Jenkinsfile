@@ -20,8 +20,7 @@ pipeline {
             }
         }
 
-        stage ('Container Tests')
-        {
+        stage ('Container Tests') {
             steps {
                 script {
                     echo 'Launch container'
@@ -33,8 +32,7 @@ pipeline {
             }
         }
 
-        stage ('Unit Tests')
-        {
+        stage ('Unit Tests') {
             steps {
                 echo 'Run Unit Tests'
             }
