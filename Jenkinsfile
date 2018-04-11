@@ -3,7 +3,5 @@ node {
     checkout scm
 
     stage 'Test'
-    script {
-        sh "echo 123"
-    }
+    echo '123'
 }    
