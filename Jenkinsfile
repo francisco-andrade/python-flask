@@ -11,12 +11,6 @@ pipeline {
     }
 
     stages {
-        stage('Copy source code') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Build Container Image') {
             steps {
                 echo 'Building Docker Image'
