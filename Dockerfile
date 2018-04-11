@@ -1,11 +1,15 @@
-FROM jazzdd/alpine-flask
+# FROM jazzdd/alpine-flask
 
-COPY app.py /usr/src/app/
+# COPY app.py /usr/src/app/
 
-WORKDIR /usr/src/app/
+# WORKDIR /usr/src/app/
 
-EXPOSE 8081/tcp
+# EXPOSE 8081/tcp
 
-ENTRYPOINT ["python"]
+# ENTRYPOINT ["python"]
 
-CMD ["app.py"]
+# CMD ["app.py"]
+
+FROM node:7-alpine
+
+RUN apk add -U subversion
