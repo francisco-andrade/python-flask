@@ -1,12 +1,10 @@
-FROM jazzdd/alpine-flask
+FROM python/2.7-jessie
 
 COPY app.py /usr/src/app/
 
 WORKDIR /usr/src/app/
 
 EXPOSE 8081/tcp
-
-RUN python app.py &
 
 # ENTRYPOINT ["python"]
 
