@@ -6,6 +6,6 @@ WORKDIR /usr/src/app/
 
 EXPOSE 8081/tcp
 
-ENTRYPOINT ["python"]
+ENTRYPOINT ["python", "app.py"]
 
 CMD ["app.py"]
