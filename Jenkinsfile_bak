@@ -1,4 +1,6 @@
-node {
+pipeline {
+    agent any
+
     environment {
         APP_NAME = "flask"
         IMAGE_PATH = "./"
