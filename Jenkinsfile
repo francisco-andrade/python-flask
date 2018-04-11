@@ -25,7 +25,7 @@ pipeline {
                 script {
                     echo 'Launch container'
                     sh """docker run -d -p 8888:8888 --name ${env.DOCKER_CONTAINER_NAME} --entrypoint python ${env.IMAGE_TAG} /usr/src/app/app.py"""
-                    sh """docker exec -t ${env.DOCKER_CONTAINER_NAME} curl localhost:8888"""
+                    sh """docker exec -t ${env.DOCKER_CONTAINER_NAME} /usr/bin/curl localhost:8888"""
                 }
             }
         }
