@@ -6,7 +6,7 @@ pipeline {
         IMAGE_PATH = "./"
         IMAGE_TAG = "${APP_NAME}:${BRANCH_NAME}.${BUILD_NUMBER}"
         DOCKER_CONTAINER_NAME = "${APP_NAME}${BUILD_NUMBER}"
-        SERVICE_PORT = "8888"
+        SERVICE_PORT = "8081"
         REMOVE_CONTAINER_AT_END = "false"
     }
 
