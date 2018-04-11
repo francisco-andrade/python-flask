@@ -1,7 +1,3 @@
-/***************************************************************
- * AZURE                                                       *
- ***************************************************************/
-
 pipeline {
   agent any
 
@@ -12,15 +8,11 @@ pipeline {
   }
 
   stages {
-    stage('Build Container Images') {
+    stage('Build Container Image') {
       steps {
       echo 'Building Docker Image'
         script {
           def newImage = docker.build(IMAGE_TAG, IMAGE_PATH)
-          echo 'Check python version'
-          newImage.inside {
-            sh 'python --version'
-          }
         }
       }
     }
