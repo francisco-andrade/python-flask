@@ -28,8 +28,8 @@ pipeline {
                     sh """docker run -d -p ${env.SERVICE_PORT}:${env.SERVICE_PORT} --name ${env.DOCKER_CONTAINER_NAME} --entrypoint python ${env.IMAGE_TAG} /usr/src/app/app.py"""
                     env.CONTAINER_IP = sh (script: """docker inspect --format='{{ .NetworkSettings.IPAddress }}' ${env.DOCKER_CONTAINER_NAME}""", returnStdout: true).toString().trim()
                     env.CURL_OUTPUT = sh (script: """curl -s ${env.CONTAINER_IP}:${env.SERVICE_PORT}""", returnStdout: true).toString().trim()
-                    sh """echo ${env.CURL_OUTPUT}"""
-                    sh """if [[ ${env.CURL_OUTPUT} == *here* ]]; then true; else false; fi"""
+                    sh """echo \"${env.CURL_OUTPUT}\""""
+                    sh """if [[ \"${env.CURL_OUTPUT}\" == *here* ]]; then true; else false; fi"""
                 }
             }
         }
