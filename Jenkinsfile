@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    node {
+        checkout scm
+    }
+
     environment {
         APP_NAME = "flask"
         IMAGE_PATH = "./"
@@ -13,7 +17,6 @@ pipeline {
     stages {
         stage('Build Container Image') {
             steps {
-                checkout scm
                 echo 'Building Docker Image'
                 script {
                     def newImage = docker.build(IMAGE_TAG, IMAGE_PATH)
