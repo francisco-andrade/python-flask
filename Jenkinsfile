@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    node {
-        checkout scm
-    }
-
     environment {
         APP_NAME = "flask"
         IMAGE_PATH = "./"
