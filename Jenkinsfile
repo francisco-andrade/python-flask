@@ -43,7 +43,7 @@ pipeline {
 
     post {
         always {
-            sh """if ${env.REMOVE_CONTAINER_AT_END}; then echo 'Remove container'; docker rm -f ${env.DOCKER_CONTAINER_NAME} || true; else echo 'Container will not be removed'; fi"""
+            sh """if ${env.REMOVE_CONTAINER_AT_END}; then echo 'Remove container'; docker rm -f ${env.DOCKER_CONTAINER_NAME} || true; else echo 'Container will not be removed' || true; fi"""
             echo "Finish..."
         }
     }
