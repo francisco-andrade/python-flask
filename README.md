@@ -9,5 +9,5 @@ pip install Flask
 
 ## Running the app
 ```
-python hello.py
+python app.py
 ```
