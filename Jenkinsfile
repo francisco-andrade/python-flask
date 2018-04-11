@@ -6,6 +6,7 @@ pipeline {
         IMAGE_PATH = "./"
         IMAGE_TAG = "${APP_NAME}:${BRANCH_NAME}.${BUILD_NUMBER}"
         DOCKER_CONTAINER_NAME = "${APP_NAME}${BUILD_NUMBER}"
+        SERVICE_PORT = "8888"
         REMOVE_CONTAINER_AT_END = "false"
     }
 
@@ -24,8 +25,11 @@ pipeline {
             steps {
                 script {
                     echo 'Launch container'
-                    sh """docker run -d -p 8888:8888 --name ${env.DOCKER_CONTAINER_NAME} --entrypoint python ${env.IMAGE_TAG} /usr/src/app/app.py"""
-                    sh """docker exec -t ${env.DOCKER_CONTAINER_NAME} /usr/bin/curl localhost:8888"""
+                    sh """docker run -d -p ${env.SERVICE_PORT}:${env.SERVICE_PORT} --name ${env.DOCKER_CONTAINER_NAME} --entrypoint python ${env.IMAGE_TAG} /usr/src/app/app.py"""
+                    env.CONTAINER_IP = sh (script: """docker inspect --format='{{ .NetworkSettings.IPAddress }}' ${env.DOCKER_CONTAINER_NAME}""", returnStdout: true).toString().trim()
+                    sh """echo ${env.CONTAINER_IP}"""
+                    sh """curl ${env.CONTAINER_IP}:${env.SERVICE_PORT}"""
+                    sh """docker exec -t ${env.DOCKER_CONTAINER_NAME} /usr/bin/curl localhost:${env.SERVICE_PORT}"""
                 }
             }
         }
