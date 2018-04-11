@@ -1,4 +1,6 @@
-node {
+pipeline {
+    agent any
+
     environment {
         APP_NAME = "flask"
         IMAGE_PATH = "./"
@@ -9,12 +11,6 @@ node {
     }
 
     stages {
-        stage('Checkout code') {
-            steps {
-                checkout scm
-            }
-        }
-
         stage('Build Container Image') {
             steps {
                 echo 'Building Docker Image'
