@@ -38,6 +38,7 @@ pipeline {
         stage ('Unit Tests') {
             steps {
                 echo 'Run Unit Tests'
+                sh """sleep 10"""
             }
         }
     }
